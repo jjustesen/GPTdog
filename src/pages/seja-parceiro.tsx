@@ -3,10 +3,6 @@ import { Flex, Text } from "@chakra-ui/react";
 import { Header } from "@/components/Header";
 import { Configuration } from "openai";
 
-const configuration = new Configuration({
-  apiKey: "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",
-});
-
 export default function Home() {
   return (
     <>

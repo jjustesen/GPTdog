@@ -23,6 +23,7 @@ interface iMessages {
   message: any;
 }
 
+const isProd = false;
 export default function Home() {
   const [messages, setMessages] = useState<iMessages[]>([]);
   const [input, setInput] = useState("");
@@ -31,26 +32,32 @@ export default function Home() {
     const sendedMessage = { type: "text", from: "user", message: input };
     setInput("");
 
-    const completion: any = await openai.createCompletion({
-      model: "text-davinci-002",
-      // model: "text-babbage-001",
-      prompt: generatePrompt(input),
-      temperature: 0.6,
-    });
+    if (isProd) {
+      const completion: any = await openai.createCompletion({
+        model: "text-davinci-002",
+        // model: "text-babbage-001",
+        prompt: generatePrompt(input),
+        temperature: 0.6,
+      });
+      const findDog = dogs.find((dog) =>
+        completion?.data?.choices?.[0].text.includes(String(dog.id))
+      );
+      const gptMessage = { type: "image", from: "gpt", message: findDog };
 
-    const teste = {
-      text: "\n\n2. Lindinha",
-      index: 0,
-      logprobs: null,
-      finish_reason: "stop",
-    };
+      setMessages((oldValue) => [...oldValue, sendedMessage, gptMessage]);
+    } else {
+      const teste = {
+        text: "\n\n2. Lindinha",
+        index: 0,
+        logprobs: null,
+        finish_reason: "stop",
+      };
 
-    const findDog = dogs.find((dog) =>
-      completion?.data?.choices?.[0].text.includes(String(dog.id))
-    );
-    const gptMessage = { type: "image", from: "gpt", message: findDog };
+      const findDog = dogs.find((dog) => teste.text.includes(String(dog.id)));
+      const gptMessage = { type: "image", from: "gpt", message: findDog };
 
-    setMessages((oldValue) => [...oldValue, sendedMessage, gptMessage]);
+      setMessages((oldValue) => [...oldValue, sendedMessage, gptMessage]);
+    }
   };
 
   console.log(messages);
