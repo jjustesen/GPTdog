@@ -24,10 +24,10 @@ export default function Home() {
           justifyContent={"center"}
           textAlign="center"
         >
-          <Text fontSize={42} fontWeight={600}>
+          <Text fontSize={{ base: 32, md: 42 }} fontWeight={600}>
             GPTdog
           </Text>
-          <Text fontSize={32} opacity={0.6} fontWeight={400}>
+          <Text fontSize={{ base: 20, md: 32 }} opacity={0.6} fontWeight={400}>
             Descubra a alegria de encontrar o cachorro ideal para adoção.
             Junte-se a nós e faça parte de uma jornada repleta de amor e caudas
             abanando!
@@ -39,9 +39,9 @@ export default function Home() {
             colorScheme="pink"
             size="lg"
             borderRadius={80}
-            h={"80px"}
+            h={{ base: "64px", md: "80px" }}
             px={12}
-            fontSize={24}
+            fontSize={{ base: 18, md: 24 }}
           >
             Encontre seu novo mascote
           </Button>

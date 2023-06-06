@@ -72,7 +72,7 @@ export default function Home() {
           gap={6}
           w="100%"
           maxW="1440px"
-          h="calc(100vh - 170px)"
+          h="calc(100vh - 270px)"
           p={8}
           overflowY={"auto"}
         >
