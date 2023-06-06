@@ -8,7 +8,7 @@ export const Header = () => {
         GPTdog
       </Text>
       <Flex gap={2}>
-        <Button colorScheme="pink" variant="ghost" as="a" href="/">
+        <Button colorScheme="pink" variant="ghost" as="a" href="/chat">
           Chat
         </Button>
         <Button colorScheme="pink" as="a" href="/seja-parceiro">
